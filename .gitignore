@@ -1,0 +1,30 @@
+### Python ###
+# Binaries.
+/tc
+/netperf
+/netserver
+/nsenter
+/brctl
+
+# Python .zip files.
+transperf.zip
+
+# Generic generated files.
+Module.symvers
+
+# Results.
+LATEST
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
