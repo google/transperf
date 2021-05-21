@@ -247,11 +247,11 @@ def gen_transperf_pages(data_dir, has_xplot=False,
         ('dur', 'sec')
     ]
     metric_cols = [
-        ('tool_tputs',  'Mbps', '%s'),   # throughput from netperf or similar
-        ('retx',        '',     '%.3f'),
-        ('p95_rtt',     'ms',   '%s'),
-        ('med_rtt',     'ms',   '%s'),
-        ('lock_on_bw',  'Mbps', '%s'),
+        ('tool_tputs',  'Mbps', '%s',     1.0),   # throughput from netperf or similar
+        ('retx',        '',     '%.2f%%', 100.0), # convert retx fraction to percent
+        ('p95_rtt',     'ms',   '%s',     1.0),
+        ('med_rtt',     'ms',   '%s',     1.0),
+        ('lock_on_bw',  'Mbps', '%s',     1.0),
     ]
     exps = cfgutil.exps(data_dir)
     has_error = 0
@@ -274,8 +274,8 @@ def gen_transperf_pages(data_dir, has_xplot=False,
             v = fields[name]
             html += '<td>%s %s</td>' % (v, unit)
 
-        for name, unit, fmt in metric_cols:
-            v = ', '.join([(fmt % m) for m in metrics[name].as_array()])
+        for name, unit, fmt, mul in metric_cols:
+            v = ', '.join([(fmt % (m * mul)) for m in metrics[name].as_array()])
             html += '<td>%s %s</td>' % (v, unit)
 
         html += '<td>'
